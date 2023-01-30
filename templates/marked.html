@@ -1,0 +1,21 @@
+<!-- marked.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Attendance System</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center">Attendance Marked</h1>
+      <p class="text-center">Your attendance has been marked for {{ name }}.</p>
+      <div class="text-center">
+        <a href="/" class="btn btn-primary">Mark Another Attendance</a>
+        <a href="/attendance" class="btn btn-secondary">Show Attendance</a>
+      </div>
+    </div>
+  </body>
+</html>

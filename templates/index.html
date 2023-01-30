@@ -1,0 +1,78 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Attendance System</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Attendance System</h1>
+    <form action="/mark" method="post">
+        <div class="form-group">
+            <label for="attendee">Attendee</label>
+            <input type="text" class="form-control" id="attendee" required name="attendee">
+        </div>
+        <button type="submit" id="submit" class="btn btn-primary">Mark Attendance</button>
+    </form>
+</div>
+
+<script>
+$(document).ready(function() {
+    // Make an AJAX call to retrieve the list of attendees from Flask
+    $.getJSON("/get_attendees", function(data) {
+        // Initialize the autocomplete function for the attendee input field
+        $("#attendee").autocomplete({
+            source: data
+        });
+    });
+});
+
+
+</script>
+<h1 id="text" class="text-center my-5"></h1>
+
+<style>
+  #text {
+    background: linear-gradient(to right, #772F68, #000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 50px;
+    font-weight: bold;
+  }
+</style>
+
+<script>
+  let text = "#HepBirlikteBirÜmmetiz   ";
+  let i = 0;
+
+  function typeText() {
+    if (i < text.length) {
+      document.querySelector("#text").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeText, 100);
+    } else {
+      i = 0;
+      document.querySelector("#text").innerHTML = "";
+      setTimeout(typeText, 100);
+    }
+  }
+  typeText();
+</script>
+
+
+
+<footer class="bg-dark text-white py-3">
+    <div class="container">
+        <p class="text-center"> copyright &copy; Idriss 2023</p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,8 @@
+body{
+  background: linear-gradient(to right,#C33764,#1D2671);
+}
+footer {
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  margin-top : 450px;
+}
