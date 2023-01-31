@@ -16,7 +16,6 @@ attendance = csv_to_dict("names.csv")
 
 @app.route('/')
 def index():
-    print(attendance)
     return render_template('index.html')
 
 
@@ -29,22 +28,21 @@ def get_attendees():
 
 @app.route('/mark', methods=['POST'])
 def mark():
-    name = request.form.get('attendee')
-    if name in attendance:
-        attendance[name] += 1
+    ad = request.form.get('attendee')
+    if ad in attendance:
+        attendance[ad] += 1
     else:
-        attendance[name] = 1
+        attendance[ad] = 1
     with open("names.csv", "w", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(["Name", "Attendances"])
         for name, value in attendance.items():
             writer.writerow(([name, value]))
-    return render_template('marked.html', name=name)
+    return render_template('marked.html', name=ad)
 
 
 @app.route('/attendance')
 def show_attendance():
-    print(attendance)
     return render_template('attendance.html', attendance=attendance)
 
 
