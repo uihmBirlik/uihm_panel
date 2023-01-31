@@ -13,6 +13,12 @@
     <title>Attendance System</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong" style="background: rgba(0,0,0,0.5)">
+      <a class="navbar-brand" href="#">
+        <img src="./static/image2.png" alt="Logo" width="60" height="60" style="margin : 0;">
+      </a>
+      <span class="navbar-text">UİHM</span>
+    </nav>
 <div class="container mt-5">
     <h1 class="text-center">Attendance System</h1>
     <form action="/mark" method="post">
@@ -36,6 +42,11 @@ $(document).ready(function() {
 });
 
 
+
+
+
+
+
 </script>
 <h1 id="text" class="text-center my-5"></h1>
 
@@ -54,6 +65,11 @@ $(document).ready(function() {
       font-size: 30px;
     }
   }
+
+
+
+
+
 </style>
 
 <script>
@@ -72,14 +88,66 @@ $(document).ready(function() {
     }
   }
   typeText();
+
+
+
+
+
 </script>
 
+<style>
+  .footer {
+    background: linear-gradient(to right, #09203F, #537895);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
 
+  .footer img {
+    height: 50px;
+    margin: 1rem 0;
+  }
 
-<footer class="bg-dark text-white py-3">
-    <div class="container">
-        <p class="text-center"> copyright &copy; Idriss 2023</p>
-    </div>
+  .footer p {
+    color: white;
+    margin-top: 1rem;
+  }
+
+  .footer .img-slider {
+    display: flex;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+
+  .footer .img-slider img {
+    margin: 0 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer {
+      flex-direction: row;
+    }
+
+    .footer .img-slider {
+      display: flex;
+      overflow-x: visible;
+      white-space: initial;
+    }
+  }
+</style>
+
+<footer class="footer">
+  <div class="img-slider">
+    <img src="./static/image1.png" alt="Image 1">
+    <img src="./static/image2.png" alt="Image 2">
+    <img src="./static/image3.png" alt="Image 3">
+    <img src="./static/image4.png" alt="Image 4">
+    <img src="./static/image5.png" alt="Image 5">
+    <img src="./static/image6.png" alt="Image 6">
+  </div>
+  <p>Copyright &copy; Idriss 2023</p>
 </footer>
+
 </body>
 </html>
