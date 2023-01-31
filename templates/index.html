@@ -41,11 +41,18 @@ $(document).ready(function() {
 
 <style>
   #text {
+    padding : 20px;
+    position: absolute;
     background: linear-gradient(to right, #772F68, #000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 50px;
     font-weight: bold;
+  }
+  @media only screen and (max-width: 600px) {
+    #text {
+      font-size: 30px;
+    }
   }
 </style>
 
