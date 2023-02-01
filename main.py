@@ -8,7 +8,7 @@ def csv_to_dict(file_path):
     with open(file_path, 'r') as file:
         reader = csv.reader(file)
         header = next(reader)
-        return {rows[0]: int(rows[1]) for rows in reader}
+        return {rows[0]: int(rows[1]) for rows in reader if len(rows) >= 2}
 
 
 attendance = csv_to_dict("names.csv")
