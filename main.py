@@ -32,7 +32,7 @@ def index():
         time_diff = (datetime.now() - last_access).total_seconds() / 60
 
         # If the time difference is less than 5 minutes, return an error message
-        if time_diff < 20:
+        if time_diff < 5:
             return json.dumps({"error": "Please wait before accessing the system again"}), 429
 
         # If the time difference is 5 minutes or more, update the access time
