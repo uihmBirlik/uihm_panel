@@ -1,10 +1,9 @@
-from datetime import datetime
-
-from flask import Flask, request, render_template, jsonify, json
+from flask import Flask, request, render_template, jsonify, session
 import csv
+import time
 
 app = Flask(__name__)
-attendance_IPs = {}
+app.secret_key = "idrissaRusongeka"
 
 
 def csv_to_dict(file_path):
@@ -17,31 +16,16 @@ def csv_to_dict(file_path):
 attendance = csv_to_dict("names.csv")
 
 
-@app.route('/', methods=["GET"])
+@app.route('/')
 def index():
-    # Get the client's IP address
-    client_ip = request.remote_addr
-    print(client_ip)
-
-    # Check if the IP address is in the attendance data
-    if client_ip in attendance_IPs:
-        # Get the last access time for this IP address
-        last_access = attendance_IPs[client_ip]
-
-        # Calculate the time difference in minutes
-        time_diff = (datetime.now() - last_access).total_seconds() / 60
-
-        # If the time difference is less than 5 minutes, return an error message
-        if time_diff < 5:
-            return json.dumps({"error": "Please wait before accessing the system again"}), 429
-
-        # If the time difference is 5 minutes or more, update the access time
-        attendance_IPs[client_ip] = datetime.now()
+    print(session.get("last_vist"))
+    last_visit = session.get("last_vist", 0)
+    current_time = int(time.time())
+    if current_time - last_visit < 300:
+        return jsonify(error="access denied"), 404
     else:
-        # If the IP address is not in the attendance data, add it
-        attendance_IPs[client_ip] = datetime.now()
-    print(attendance_IPs)
-    return render_template('index.html')
+        session["last_vist"] = current_time
+        return render_template('index.html'), 200
 
 
 @app.route("/get_attendees")
