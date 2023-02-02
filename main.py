@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, jsonify, json
 import csv
 
 app = Flask(__name__)
-attendance_data = {}
+attendance_IPs = {}
 
 
 def csv_to_dict(file_path):
@@ -24,9 +24,9 @@ def index():
     print(client_ip)
 
     # Check if the IP address is in the attendance data
-    if client_ip in attendance_data:
+    if client_ip in attendance_IPs:
         # Get the last access time for this IP address
-        last_access = attendance_data[client_ip]
+        last_access = attendance_IPs[client_ip]
 
         # Calculate the time difference in minutes
         time_diff = (datetime.now() - last_access).total_seconds() / 60
@@ -36,11 +36,11 @@ def index():
             return json.dumps({"error": "Please wait before accessing the system again"}), 429
 
         # If the time difference is 5 minutes or more, update the access time
-        attendance_data[client_ip] = datetime.now()
+        attendance_IPs[client_ip] = datetime.now()
     else:
         # If the IP address is not in the attendance data, add it
-        attendance_data[client_ip] = datetime.now()
-
+        attendance_IPs[client_ip] = datetime.now()
+    print(attendance_IPs)
     return render_template('index.html')
 
 
