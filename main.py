@@ -14,7 +14,6 @@ def csv_to_dict(file_path):
 
 
 attendance = csv_to_dict("names.csv")
-attendance_list = list(enumerate(attendance.items(), 1))
 
 
 @app.route('/')
@@ -23,7 +22,7 @@ def index():
     last_visit = session.get("last_vist", 0)
     current_time = int(time.time())
     if current_time - last_visit < 300:
-        return jsonify(error="access denied"), 404
+        pass
     else:
         session["last_vist"] = current_time
     return render_template('index.html'), 200
@@ -53,6 +52,9 @@ def mark():
 
 @app.route('/attendance')
 def show_attendance():
+    attendance = csv_to_dict("names.csv")
+    attendance_list = list(enumerate(attendance.items(), 1))
+    print(attendance_list)
     return render_template('attendance.html', attendance_list=attendance_list)
 
 
