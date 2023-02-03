@@ -14,6 +14,7 @@ def csv_to_dict(file_path):
 
 
 attendance = csv_to_dict("names.csv")
+attendance_list = list(enumerate(attendance.items(), 1))
 
 
 @app.route('/')
@@ -25,7 +26,7 @@ def index():
         return jsonify(error="access denied"), 404
     else:
         session["last_vist"] = current_time
-        return render_template('index.html'), 200
+    return render_template('index.html'), 200
 
 
 @app.route("/get_attendees")
@@ -52,7 +53,7 @@ def mark():
 
 @app.route('/attendance')
 def show_attendance():
-    return render_template('attendance.html', attendance=attendance)
+    return render_template('attendance.html', attendance_list=attendance_list)
 
 
 if __name__ == '__main__':
